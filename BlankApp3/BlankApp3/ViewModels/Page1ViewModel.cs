@@ -13,11 +13,19 @@ namespace BlankApp3.ViewModels
 
         public ReactiveCollection<Page1Row> Rows { get; set; } = new ReactiveCollection<Page1Row>();
 
+        public ReactiveProperty<string> Message { get; set; } = new ReactiveProperty<string>();
+
         public AsyncReactiveCommand IncrementProperty4 => new AsyncReactiveCommand().WithSubscribe(() =>
-          {
-              model.IncrementProperty4();
-              return Task.CompletedTask;
-          });
+        {
+            model.IncrementProperty4();
+            return Task.CompletedTask;
+        });
+
+        public AsyncReactiveCommand ValueCheck => new AsyncReactiveCommand().WithSubscribe(() =>
+        {
+            model.ValueCheck();
+            return Task.CompletedTask;
+        });
 
         public Page1ViewModel()
         {
@@ -29,12 +37,13 @@ namespace BlankApp3.ViewModels
             {
                 Rows.Add(new Page1Row()
                 {
-                    Property1 = row.ObserveProperty(r => r.Property1).ToReactiveProperty(),
-                    Property2 = row.ObserveProperty(r => r.Property2).ToReactiveProperty(),
-                    Property3 = row.ObserveProperty(r => r.Property3).ToReactiveProperty(),
-                    Property4 = row.ObserveProperty(r => r.Property4).ToReactiveProperty(),
+                    Property1 = row.ToReactivePropertyAsSynchronized(r => r.Property1),
+                    Property2 = row.ToReactivePropertyAsSynchronized(r => r.Property2),
+                    Property3 = row.ToReactivePropertyAsSynchronized(r => r.Property3),
+                    Property4 = row.ToReactivePropertyAsSynchronized(r => r.Property4),
                 });
             }
+            Message = model.ObserveProperty(model => model.Message).ToReactiveProperty();
         }
     }
 }
