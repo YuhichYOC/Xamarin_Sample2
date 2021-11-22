@@ -20,6 +20,7 @@
                 <Label Grid.Column="3" Text="Prop4" />
             </Grid>
             <CollectionView ItemsSource="{Binding Rows}" ItemTemplate="{StaticResource grid}" />
+            <Button Text="Increment Property 4" Command="{Binding IncrementProperty4}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

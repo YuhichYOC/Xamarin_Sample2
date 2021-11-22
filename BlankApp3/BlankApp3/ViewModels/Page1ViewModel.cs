@@ -1,6 +1,7 @@
 ﻿using BlankApp3.Models;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
+using System.Threading.Tasks;
 
 namespace BlankApp3.ViewModels
 {
@@ -11,6 +12,12 @@ namespace BlankApp3.ViewModels
         public ReactiveProperty<string> Page1Title { get; set; } = new ReactiveProperty<string>();
 
         public ReactiveCollection<Page1Row> Rows { get; set; } = new ReactiveCollection<Page1Row>();
+
+        public AsyncReactiveCommand IncrementProperty4 => new AsyncReactiveCommand().WithSubscribe(() =>
+          {
+              model.IncrementProperty4();
+              return Task.CompletedTask;
+          });
 
         public Page1ViewModel()
         {
