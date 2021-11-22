@@ -54,42 +54,42 @@ namespace BlankApp3.Models
             var r1p1 = Rows[0].Property1;
             if (Rows[0].Property2 == r1p1)
             {
-                Message = @"Row1.Property1 as same as Row1.Property2";
+                Message = @"Row1.Property1 is same as Row1.Property2";
                 return;
             }
             if (Rows[0].Property3 == r1p1)
             {
-                Message = @"Row1.Property1 as same as Row1.Property3";
+                Message = @"Row1.Property1 is same as Row1.Property3";
                 return;
             }
             if (Rows[1].Property1 == r1p1)
             {
-                Message = @"Row1.Property1 as same as Row2.Property1";
+                Message = @"Row1.Property1 is same as Row2.Property1";
                 return;
             }
             if (Rows[1].Property2 == r1p1)
             {
-                Message = @"Row1.Property1 as same as Row2.Property2";
+                Message = @"Row1.Property1 is same as Row2.Property2";
                 return;
             }
             if (Rows[1].Property3 == r1p1)
             {
-                Message = @"Row1.Property1 as same as Row2.Property3";
+                Message = @"Row1.Property1 is same as Row2.Property3";
                 return;
             }
             if (Rows[2].Property1 == r1p1)
             {
-                Message = @"Row1.Property1 as same as Row3.Property1";
+                Message = @"Row1.Property1 is same as Row3.Property1";
                 return;
             }
             if (Rows[2].Property2 == r1p1)
             {
-                Message = @"Row1.Property1 as same as Row3.Property2";
+                Message = @"Row1.Property1 is same as Row3.Property2";
                 return;
             }
             if (Rows[2].Property3 == r1p1)
             {
-                Message = @"Row1.Property1 as same as Row3.Property3";
+                Message = @"Row1.Property1 is same as Row3.Property3";
                 return;
             }
             Message = string.Empty;
