@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:BlankApp3.ViewModels"
+    x:DataType="viewModel:Page1Row"
+    x:Class="BlankApp3.Views.Page1Styles">
+    <Style Class="columnheader" TargetType="Grid">
+        <Setter Property="ColumnDefinitions">
+            <ColumnDefinitionCollection>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </ColumnDefinitionCollection>
+        </Setter>
+    </Style>
+    <Style Class="body" TargetType="Grid">
+        <Setter Property="ColumnDefinitions">
+            <ColumnDefinitionCollection>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </ColumnDefinitionCollection>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="grid">
+        <Grid StyleClass="body">
+            <Entry Grid.Column="0" Text="{Binding Property1.Value}" />
+            <Entry Grid.Column="1" Text="{Binding Property2.Value}" />
+            <Entry Grid.Column="2" Text="{Binding Property3.Value}" />
+            <Entry Grid.Column="3" Text="{Binding Property4.Value}" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
