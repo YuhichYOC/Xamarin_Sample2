@@ -1,5 +1,6 @@
 ﻿using Prism.Mvvm;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace BlankApp3.Models
 {
@@ -7,13 +8,15 @@ namespace BlankApp3.Models
     {
         private string page1Title;
 
-        private ObservableCollection<TestDataRow> rows;
+        private ObservableCollection<Page1RowModel> rows;
 
         private string message;
 
         private string testMessage;
 
-        private Page1BranchModel branch;
+        private Page1ReplicaModel replica;
+
+        private IList<Page1RowReplicaModel> rowReplicas;
 
         public string Page1Title
         {
@@ -21,7 +24,7 @@ namespace BlankApp3.Models
             set => SetProperty(ref page1Title, value);
         }
 
-        public ObservableCollection<TestDataRow> Rows
+        public ObservableCollection<Page1RowModel> Rows
         {
             get => rows;
             set => SetProperty(ref rows, value);
@@ -41,21 +44,22 @@ namespace BlankApp3.Models
 
         public Page1Model()
         {
-            branch = new Page1BranchModel(this);
+            replica = new Page1ReplicaModel() { Bypass = CopyToTestMessage };
             Page1Title = @"Test Page1 Title";
 
-            Rows = new ObservableCollection<TestDataRow>();
-            TestDataRowBranch addBranch;
-            TestDataRow add;
-            addBranch = new TestDataRowBranch(branch);
-            add = new TestDataRow(addBranch) { Property1 = @"AAA", Property2 = @"BBB", Property3 = @"CCC", Property4 = 1 };
-            Rows.Add(add);
-            addBranch = new TestDataRowBranch(branch);
-            add = new TestDataRow(addBranch) { Property1 = @"DDD", Property2 = @"EEE", Property3 = @"FFF", Property4 = 2 };
-            Rows.Add(add);
-            addBranch = new TestDataRowBranch(branch);
-            add = new TestDataRow(addBranch) { Property1 = @"GGG", Property2 = @"HHH", Property3 = @"III", Property4 = 3 };
-            Rows.Add(add);
+            rowReplicas = new List<Page1RowReplicaModel>()
+            {
+                new Page1RowReplicaModel() { Bypass = replica.CopyToMessage },
+                new Page1RowReplicaModel() { Bypass = replica.CopyToMessage },
+                new Page1RowReplicaModel() { Bypass = replica.CopyToMessage },
+            };
+
+            Rows = new ObservableCollection<Page1RowModel>()
+            {
+                new Page1RowModel() { Property1 = @"AAA", Property2 = @"BBB", Property3 = @"CCC", Property4 = 1, Bypass = rowReplicas[0].CopyToProp1 },
+                new Page1RowModel() { Property1 = @"DDD", Property2 = @"EEE", Property3 = @"FFF", Property4 = 2, Bypass = rowReplicas[1].CopyToProp1 },
+                new Page1RowModel() { Property1 = @"GGG", Property2 = @"HHH", Property3 = @"III", Property4 = 3, Bypass = rowReplicas[2].CopyToProp1 },
+            };
 
             Message = string.Empty;
             TestMessage = string.Empty;
@@ -113,6 +117,11 @@ namespace BlankApp3.Models
                 return;
             }
             Message = string.Empty;
+        }
+
+        private void CopyToTestMessage(string arg)
+        {
+            TestMessage = arg;
         }
     }
 }

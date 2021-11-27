@@ -2,7 +2,7 @@
 
 namespace BlankApp3.Models
 {
-    public class TestDataRow : BindableBase
+    public class Page1RowModel : BindableBase
     {
         private string property1;
 
@@ -15,7 +15,7 @@ namespace BlankApp3.Models
         public string Property1
         {
             get => property1;
-            set => SetProperty(ref property1, value, CopyProp1ToBranchRow);
+            set => SetProperty(ref property1, value, BypassProp1);
         }
 
         public string Property2
@@ -36,16 +36,14 @@ namespace BlankApp3.Models
             set => SetProperty(ref property4, value);
         }
 
-        public TestDataRowBranch BranchRow { get; }
+        public delegate void BypassDelegate(string arg);
 
-        public TestDataRow(TestDataRowBranch arg)
-        {
-            BranchRow = arg;
-        }
+        public BypassDelegate Bypass { get; set; }
 
-        private void CopyProp1ToBranchRow()
+        private void BypassProp1()
         {
-            BranchRow.TestValue = Property1;
+            if (Bypass == null) return;
+            Bypass(Property1);
         }
     }
 }
