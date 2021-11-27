@@ -21,6 +21,7 @@
             </Grid>
             <CollectionView ItemsSource="{Binding Rows}" ItemTemplate="{StaticResource grid}" />
             <Label Text="{Binding Message.Value}" />
+            <Label Text="{Binding TestMessage.Value}" />
             <Button Text="Increment Property 4" Command="{Binding IncrementProperty4}" />
             <Button Text="Row1.Property1 is same as ..." Command="{Binding ValueCheck}" />
         </StackLayout>

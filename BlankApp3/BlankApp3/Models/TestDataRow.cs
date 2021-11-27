@@ -15,7 +15,7 @@ namespace BlankApp3.Models
         public string Property1
         {
             get => property1;
-            set => SetProperty(ref property1, value);
+            set => SetProperty(ref property1, value, CopyProp1ToBranchRow);
         }
 
         public string Property2
@@ -34,6 +34,18 @@ namespace BlankApp3.Models
         {
             get => property4;
             set => SetProperty(ref property4, value);
+        }
+
+        public TestDataRowBranch BranchRow { get; }
+
+        public TestDataRow(TestDataRowBranch arg)
+        {
+            BranchRow = arg;
+        }
+
+        private void CopyProp1ToBranchRow()
+        {
+            BranchRow.TestValue = Property1;
         }
     }
 }

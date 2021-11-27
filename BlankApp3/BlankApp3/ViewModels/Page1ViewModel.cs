@@ -15,6 +15,8 @@ namespace BlankApp3.ViewModels
 
         public ReactiveProperty<string> Message { get; set; } = new ReactiveProperty<string>();
 
+        public ReadOnlyReactiveProperty<string> TestMessage { get; }
+
         public AsyncReactiveCommand IncrementProperty4 => new AsyncReactiveCommand().WithSubscribe(() =>
         {
             model.IncrementProperty4();
@@ -44,6 +46,7 @@ namespace BlankApp3.ViewModels
                 });
             }
             Message = model.ObserveProperty(model => model.Message).ToReactiveProperty();
+            TestMessage = model.ObserveProperty(model => model.TestMessage).ToReadOnlyReactiveProperty();
         }
     }
 }
